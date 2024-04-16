@@ -41,3 +41,21 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   sendResponse({});
   return true;
 });
+
+if(pageTitle.includes('Site:')) {
+  console.log('This is the sites page')
+  const orgName = document.querySelector("#OrgName").innerHTML
+  const orgAddress = document.querySelector("#AddressST").innerHTML
+  const customerObject = {
+    'Org Name': orgName,
+    'Org Address': orgName,
+  }
+  chrome.runtime.sendMessage(
+    {
+      type: 'SITE',
+      payload: {
+        name: orgName,
+        address: orgAddress
+      },})
+  console.log(`This is the sites page, the name of the org is ${orgName}, their address is ${orgAddress}`)
+} else {console.log('This is not the sites page')}

@@ -17,5 +17,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     sendResponse({
       message,
     });
+  } else if(request.type === 'SITE') {
+    const siteDetails = request.payload.name
+    console.log(siteDetails)
   }
+  console.log(request)
 });
